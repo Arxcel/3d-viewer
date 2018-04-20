@@ -1,9 +1,11 @@
 #include <iostream>
 #include "../inc/Display.hpp"
 #include "glew.h"
-#include "../inc/Mesh.hpp"
-#include "../inc/Shader.hpp"
-#include "../inc/Texture.hpp"
+#include "Mesh.hpp"
+#include "Shader.hpp"
+#include "Texture.hpp"
+#include "Transform.hpp"
+
 int main() {
 	Display d(800, 600, "3D Viewer");
 
@@ -13,11 +15,13 @@ int main() {
 	Mesh m(array, sizeof(array) / sizeof(array[0]));
 	Shader shader("./shaders/basicShader");
 	Texture tex("./shaders/texture.jpg");
+	Transform transform;
 	while (d.getIsRunning())
 	{
-		d.Clear(0.1f,0.0f,0.0f,1.0f);
+		d.Clear(0.1f,0.1f,0.1f,1.0f);
 		shader.Bind();
 		tex.Bind(0);
+		shader.update(transform);
 		m.draw();
 		d.Update();
 	}

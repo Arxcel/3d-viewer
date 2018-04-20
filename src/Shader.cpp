@@ -18,6 +18,8 @@ Shader::	Shader(std::string const &filename) {
 	checkShaderError(_prog, GL_LINK_STATUS, true, "Error: Program linkage failed.");
 	glValidateProgram(_prog);
 	checkShaderError(_prog, GL_VALIDATE_STATUS, true, "Error: Program validation failed.");
+
+	_uniforms[TRANSFORM_U] = glGetUniformLocation(_prog, "transform");
 }
 
 Shader::~Shader() {
@@ -31,6 +33,11 @@ Shader::~Shader() {
 
 void Shader::Bind() {
 	glUseProgram(_prog);
+}
+
+void Shader::update(Transform const &transform)
+{
+	glUniformMatrix4fv(_uniforms[TRANSFORM_U], 1, GL_FALSE, &transform.getModel()[0][0]);
 }
 
 GLuint Shader::createShader(std::string const &text, GLenum shaderType) {

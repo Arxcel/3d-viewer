@@ -20,7 +20,8 @@ EXT =   Display.hpp \
         Vertex.hpp \
         Mesh.hpp \
         Shader.hpp \
-        Texture.hpp
+        Texture.hpp \
+        Transform.hpp
 
 LIBGLEW = libGlew
 
