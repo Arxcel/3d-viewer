@@ -2,18 +2,21 @@
 // Created by Arxcel on 4/19/18.
 //
 
-#ifndef BASIC_RAY_TRACER_SHADER_HPP
-#define BASIC_RAY_TRACER_SHADER_HPP
+#ifndef SHADER_HPP
+#define SHADER_HPP
 
 #include <string>
 #include "glew.h"
 #include "Transform.hpp"
+#include "Camera.hpp"
 
+class Camera;
+class Transform;
 class Shader {
 public:
 	Shader(std::string const &filename);
 	virtual ~Shader();
-	void update(Transform const &transform);
+	void update(Transform const &transform, Camera const &cam);
 	std::string loadShader(std::string const &path);
 	void checkShaderError(GLuint shader, GLuint flag, bool isProgram, std::string const &err_message);
 	GLuint createShader(std::string const &text, GLenum shaderType);
@@ -32,4 +35,4 @@ private:
 };
 
 
-#endif //BASIC_RAY_TRACER_SHADER_HPP
+#endif //SHADER_HPP

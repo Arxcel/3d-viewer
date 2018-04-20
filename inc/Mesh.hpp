@@ -2,8 +2,8 @@
 // Created by Arxcel on 4/19/18.
 //
 
-#ifndef BASIC_RAY_TRACER_MESH_HPP
-#define BASIC_RAY_TRACER_MESH_HPP
+#ifndef MESH_HPP
+#define MESH_HPP
 #include "Vertex.hpp"
 #include "glew.h"
 
@@ -29,4 +29,4 @@ private:
 };
 
 
-#endif //BASIC_RAY_TRACER_MESH_HPP
+#endif //MESH_HPP

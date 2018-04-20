@@ -2,8 +2,8 @@
 // Created by Arxcel on 4/18/18.
 //
 
-#ifndef BASIC_RAY_TRACER_DISPLAY_HPP
-#define BASIC_RAY_TRACER_DISPLAY_HPP
+#ifndef DISPLAY_HPP
+#define DISPLAY_HPP
 
 #include <string>
 #include "SDL.h"
@@ -25,4 +25,4 @@ private:
 };
 
 
-#endif //BASIC_RAY_TRACER_DISPLAY_HPP
+#endif //DISPLAY_HPP

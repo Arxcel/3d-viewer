@@ -21,7 +21,8 @@ EXT =   Display.hpp \
         Mesh.hpp \
         Shader.hpp \
         Texture.hpp \
-        Transform.hpp
+        Transform.hpp \
+        Camera.hpp
 
 LIBGLEW = libGlew
 

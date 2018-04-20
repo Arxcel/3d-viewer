@@ -2,8 +2,8 @@
 // Created by Arxcel on 4/19/18.
 //
 
-#ifndef BASIC_RAY_TRACER_VERTEX_HPP
-#define BASIC_RAY_TRACER_VERTEX_HPP
+#ifndef VERTEX_HPP
+#define VERTEX_HPP
 
 #include "glm.hpp"
 
@@ -22,4 +22,4 @@ private:
 };
 
 
-#endif //BASIC_RAY_TRACER_VERTEX_HPP
+#endif //VERTEX_HPP

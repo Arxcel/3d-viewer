@@ -2,8 +2,8 @@
 // Created by Arxcel on 4/20/18.
 //
 
-#ifndef BASIC_RAY_TRACER_TRANSFORM_HPP
-#define BASIC_RAY_TRACER_TRANSFORM_HPP
+#ifndef TRANSFORM_HPP
+#define TRANSFORM_HPP
 
 #include "glm.hpp"
 #include "gtx/transform.hpp"
@@ -38,4 +38,4 @@ private:
 	glm::vec3 _scale;
 
 };
-#endif //BASIC_RAY_TRACER_TRANSFORM_HPP
+#endif //TRANSFORM_HPP

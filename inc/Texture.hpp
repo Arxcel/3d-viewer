@@ -2,8 +2,8 @@
 // Created by Arxcel on 4/19/18.
 //
 
-#ifndef BASIC_RAY_TRACER_TEXTURE_HPP
-#define BASIC_RAY_TRACER_TEXTURE_HPP
+#ifndef TEXTURE_HPP
+#define TEXTURE_HPP
 
 #include "glew.h"
 #include <string>
@@ -21,4 +21,4 @@ private:
 };
 
 
-#endif //BASIC_RAY_TRACER_TEXTURE_HPP
+#endif //TEXTURE_HPP

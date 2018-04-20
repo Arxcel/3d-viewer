@@ -35,9 +35,10 @@ void Shader::Bind() {
 	glUseProgram(_prog);
 }
 
-void Shader::update(Transform const &transform)
+void Shader::update(Transform const &transform, Camera const &cam)
 {
-	glUniformMatrix4fv(_uniforms[TRANSFORM_U], 1, GL_FALSE, &transform.getModel()[0][0]);
+	glm::mat4 model= cam.getViewProjection() * transform.getModel();
+	glUniformMatrix4fv(_uniforms[TRANSFORM_U], 1, GL_FALSE, &model[0][0]);
 }
 
 GLuint Shader::createShader(std::string const &text, GLenum shaderType) {
