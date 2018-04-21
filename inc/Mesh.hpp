@@ -19,6 +19,7 @@ private:
 	Mesh &operator=(Mesh const &){ return *this;}
 	enum{
 		POSITION_VB,
+		NORMAL_VB,
 		NUM_BUFFERS
 	};
 	GLuint _vertexArrayObject;

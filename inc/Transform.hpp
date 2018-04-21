@@ -25,9 +25,9 @@ public:
 		glm::mat4 rotMatrix = rotZMatrix * rotYMatrix * rotXMatrix;
 		return translateMatrix * rotMatrix * scaleMatrix;
 	}
-	glm::vec3 getPos() const { return _pos;}
-	glm::vec3 getRot() const { return _rot;}
-	glm::vec3 getScale() const { return _scale;}
+	glm::vec3 &getPos()  { return _pos;}
+	glm::vec3 &getRot()  { return _rot;}
+	glm::vec3 &getScale()  { return _scale;}
 
 	void setPos(glm::vec3 const &pos)  { _pos = pos;}
 	void setRot(glm::vec3 const &rot)  { _rot = rot;}

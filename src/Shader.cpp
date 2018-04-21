@@ -13,6 +13,7 @@ Shader::	Shader(std::string const &filename) {
 	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 		glAttachShader(_prog, _shaders[i]);
 	glBindAttribLocation(_prog, 0, "position");
+	glBindAttribLocation(_prog, 1, "normal");
 	glLinkProgram(_prog);
 	checkShaderError(_prog, GL_LINK_STATUS, true, "Error: Program linkage failed.");
 	glValidateProgram(_prog);

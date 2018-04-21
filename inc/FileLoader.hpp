@@ -9,20 +9,32 @@
 #include <vector>
 #include <fstream>
 #include "Vertex.hpp"
-#include <algorithm>
-#include <iostream>
-#include <sstream>
+
+class Triangle {
+public:
+	Triangle(){
+		_vertices.reserve(3);
+		_area = 0;
+		_angle = 0;
+	}
+	std::vector<Vertex>		_vertices;
+	float 					_area;
+	float					_angle;
+};
+
 class FileLoader {
 public:
 	FileLoader();
 	void loadAsciiStl(std::string const & filename);
 	virtual ~FileLoader();
 	std::vector<Vertex> getVertices() const;
-private:
-	void parseFile(std::string const &l);
-	void parseTriangle(std::string const &t);
+	std::vector<Triangle> getTriangles() const;
+
 	glm::vec3 parseVec3(std::string const &v);
-	std::vector<Vertex> _vertices;
+	void	generateTriangles();
+private:
+	std::vector<Vertex>		_vertices;
+	std::vector<Triangle>	_triangles;
 };
 
 

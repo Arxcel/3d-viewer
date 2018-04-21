@@ -1,8 +1,8 @@
 #version 120
 
-uniform sampler2D diffuse;
+varying vec3 normal0;
 
 void main()
 {
-    gl_FragColor = vec4(0.3, 0.3, 0.3, 1);
+    gl_FragColor = vec4(0.3, 0.3, 0.3, 1) * clamp(dot(-vec3(0,0,1), normal0), 0, 1);
 }

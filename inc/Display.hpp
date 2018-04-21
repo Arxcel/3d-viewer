@@ -7,15 +7,18 @@
 
 #include <string>
 #include "SDL.h"
+#include "Transform.hpp"
 
+class Transform;
 class Display {
 
 public:
 	Display(int width, int height, std::string const &name);
 	virtual ~Display();
-	void Update();
+	void Update(Transform &t);
 	bool getIsRunning() const;
 	void Clear(float r, float g, float b, float a);
+	void	key_down(int key, Transform &t);
 private:
 	Display(Display const &) {};
 	Display &operator=(Display const &){ return *this;};
