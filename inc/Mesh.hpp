@@ -6,21 +6,19 @@
 #define MESH_HPP
 #include "Vertex.hpp"
 #include "glew.h"
-
+#include <string>
+#include <vector>
 class Vertex;
 class Mesh {
 public:
-	Mesh(Vertex *vs, unsigned int numVS, unsigned int *indecies, unsigned int numIndecies);
+	Mesh(std::vector<Vertex> &vs);
 	virtual ~Mesh();
 	void draw();
-
 private:
 	Mesh(Mesh const &) {};
 	Mesh &operator=(Mesh const &){ return *this;}
 	enum{
 		POSITION_VB,
-		TEXCOORD_VB,
-		INDEX_VB,
 		NUM_BUFFERS
 	};
 	GLuint _vertexArrayObject;

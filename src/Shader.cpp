@@ -2,7 +2,7 @@
 // Created by Arxcel on 4/19/18.
 //
 
-#include "../inc/Shader.hpp"
+#include "Shader.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -13,7 +13,6 @@ Shader::	Shader(std::string const &filename) {
 	for (unsigned int i = 0; i < NUM_SHADERS; i++)
 		glAttachShader(_prog, _shaders[i]);
 	glBindAttribLocation(_prog, 0, "position");
-	glBindAttribLocation(_prog, 1, "texCoord");
 	glLinkProgram(_prog);
 	checkShaderError(_prog, GL_LINK_STATUS, true, "Error: Program linkage failed.");
 	glValidateProgram(_prog);

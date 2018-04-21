@@ -20,9 +20,9 @@ EXT =   Display.hpp \
         Vertex.hpp \
         Mesh.hpp \
         Shader.hpp \
-        Texture.hpp \
         Transform.hpp \
-        Camera.hpp
+        Camera.hpp \
+        FileLoader.hpp
 
 LIBGLEW = libGlew
 
@@ -30,13 +30,12 @@ HEADERS = -I$(I_DIR) \
           -I./glm \
           -I ./libGlew/inc \
           -I./frameworks/SDL2.framework/Headers \
-          -I./stb_image
 
 SOURCES =   main.cpp \
             Display.cpp \
             Mesh.cpp \
-            Shader.cpp\
-            Texture.cpp
+            Shader.cpp \
+            FileLoader.cpp
 
 SRCS = $(addprefix $(S_DIR)/,$(SOURCES))
 

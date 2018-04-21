@@ -1,7 +1,7 @@
 //
 // Created by Arxcel on 4/18/18.
 //
-#include "../inc/Display.hpp"
+#include "Display.hpp"
 #include "glew.h"
 #include <iostream>
 

@@ -6,19 +6,36 @@
 #define VERTEX_HPP
 
 #include "glm.hpp"
+#include <exception>
+#include <string>
 
 class Vertex {
 public:
-	Vertex(glm::vec3 const &pos, glm::vec2 const & texCoord)
+	Vertex () {
+		pos = glm::vec3(0,0,0);
+		normale = glm::vec3(0,0,0);
+	};
+	Vertex(glm::vec3 const &pos, glm::vec3 const & normale)
 	{
 		this->pos = pos;
-		this->texCoord = texCoord;
+		this->normale = normale;
 	}
 	glm::vec3 *getPos()  { return &pos;};
-	glm::vec2 *getTex()  { return &texCoord;}
+	glm::vec3 *getNorm()  { return &normale;}
+	class CustomException : public std::exception
+	{
+	public:
+		CustomException(std::string const &text) {this->text = text;};
+		virtual const char* what() const throw() {
+			std::string res;
+			res = "Exception: " + text;
+			return (res.c_str());};
+		std::string text;
+		~CustomException() throw() {};
+	};
 private:
 	glm::vec3 pos;
-	glm::vec2 texCoord;
+	glm::vec3 normale;
 };
 
 
