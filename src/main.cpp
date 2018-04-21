@@ -15,7 +15,8 @@ int main() {
 	Vertex array[] = {Vertex(glm::vec3(-0.5,-0.5,0), glm::vec2(0.0, 0.0)),
 					  Vertex(glm::vec3(0,0.5,0), glm::vec2(0.5, 1.0)),
 					  Vertex(glm::vec3(0.5,-0.5,0), glm::vec2(1.0, 0.0))};
-	Mesh m(array, sizeof(array) / sizeof(array[0]));
+	unsigned int indices[] = {0,1,2};
+	Mesh m(array, sizeof(array) / sizeof(array[0]), indices, sizeof(indices) / sizeof(indices[0]));
 	Shader shader("./shaders/basicShader");
 	Texture tex("./shaders/texture.jpg");
 	Camera cam(glm::vec3(0,0,-3), 70.0f, static_cast<float>(WIDTH)/static_cast<float>(HEIGHT), 0.01f, 1000.0f);

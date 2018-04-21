@@ -5,9 +5,9 @@
 #include "../inc/Mesh.hpp"
 #include <vector>
 
-Mesh::Mesh(Vertex *vs, unsigned int numVS)
+Mesh::Mesh(Vertex *vs, unsigned int numVS, unsigned int *indecies, unsigned int numIn )
 {
-	_drawCount = numVS;
+	_drawCount = numIn;
 	glGenVertexArrays(1, &_vertexArrayObject);
 	glBindVertexArray(_vertexArrayObject);
 
@@ -33,6 +33,9 @@ Mesh::Mesh(Vertex *vs, unsigned int numVS)
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _vertexArrayBuffers[INDEX_VB]);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER , numIn * sizeof(indecies[0]), &indecies[0], GL_STATIC_DRAW);
+
 	glBindVertexArray(0);
 
 }
@@ -43,6 +46,7 @@ Mesh::~Mesh() {
 
 void Mesh::draw() {
 	glBindVertexArray(_vertexArrayObject);
-	glDrawArrays(GL_TRIANGLES, 0, _drawCount);
+	glDrawElements(GL_TRIANGLES, _drawCount, GL_UNSIGNED_INT, 0);
+//	glDrawArrays(GL_TRIANGLES, 0, _drawCount);
 	glBindVertexArray(0);
 }

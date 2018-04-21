@@ -10,7 +10,7 @@
 class Vertex;
 class Mesh {
 public:
-	Mesh(Vertex *vs, unsigned int numVS);
+	Mesh(Vertex *vs, unsigned int numVS, unsigned int *indecies, unsigned int numIndecies);
 	virtual ~Mesh();
 	void draw();
 
@@ -20,6 +20,7 @@ private:
 	enum{
 		POSITION_VB,
 		TEXCOORD_VB,
+		INDEX_VB,
 		NUM_BUFFERS
 	};
 	GLuint _vertexArrayObject;
