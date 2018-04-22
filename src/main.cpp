@@ -24,7 +24,7 @@ int main(int ac, char *av[]) {
 		Mesh m(t);
 		Shader shader("./shaders/basicShader");
 		Camera cam(glm::vec3(0, 0, -25.0), 70.0f, static_cast<float>(WIDTH)/static_cast<float>(HEIGHT), 0.01f, 1000.0f);
-		Transform transform;
+		Transform transform(glm::vec3(0,0,0),glm::vec3(-90,0,0));
 		while (d.getIsRunning())
 		{
 			d.clear(0.1f,0.1f,0.2f,1.0f);
