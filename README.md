@@ -11,7 +11,7 @@
 
 ## Requirements
 
-Mac OS El Capitan / Sierra / High Sierra
+Mac OS Sierra / High Sierra
 
 ## Installation
 
