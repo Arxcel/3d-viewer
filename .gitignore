@@ -1,0 +1,6 @@
+.*
+CMake*
+cmake*
+obj
+3d_viewer
+*.a
