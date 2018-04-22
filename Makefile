@@ -2,7 +2,7 @@ CC = clang++
 
 NAME = 3d_viewer
 
-FLAGS = -std=c++11 #-Wall -Wextra -Werror
+FLAGS = -std=c++11 -Wall -Wextra -Werror
 
 I_DIR = ./inc
 
