@@ -9,6 +9,9 @@
 #include <vector>
 #include <fstream>
 #include "Vertex.hpp"
+#include <sstream>
+#include <iostream>
+#include <map>
 
 class Triangle {
 public:
@@ -32,9 +35,12 @@ public:
 
 	glm::vec3 parseVec3(std::string const &v);
 	void	generateTriangles();
-private:
+	void 	createHisto();
+	std::string &checkLine(std::string &input);
+	private:
 	std::vector<Vertex>		_vertices;
 	std::vector<Triangle>	_triangles;
+	std::map<float, float> _histoData;
 };
 
 

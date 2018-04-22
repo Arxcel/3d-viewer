@@ -2,13 +2,16 @@
 // Created by Arxcel on 4/21/18.
 //
 
-#include "FileLoader.hpp"
 
+#include "FileLoader.hpp"
 
 static inline unsigned int findNextChar(unsigned int start, const char* str, unsigned int length, char token);
 static inline double parseSTLFloat(const std::string& token, unsigned int start, unsigned int end);
 static inline void trim_left(std::string &src);
 FileLoader::FileLoader(){
+//	_histoData.clear();
+//	_triangles.clear();
+//	_vertices.clear();
 }
 
 FileLoader::~FileLoader()
@@ -22,27 +25,31 @@ void FileLoader::loadAsciiStl(std::string const & filename) {
 	std::string res;
 	glm::vec3 n;
 
-	if (file.is_open())
+	if (filename.substr(filename.length() - 4) == ".stl")
 	{
-		while(file.good())
+		if (file.is_open())
 		{
-			getline(file, line);
-			trim_left(line);
-			const char lineCStr = line.c_str()[0];
-			switch(lineCStr)
+			while(file.good())
 			{
-				case 'f':
-					n = parseVec3(line);
-					break;
-				case 'v':
-					_vertices.push_back(Vertex(parseVec3(line), n));
-					break;
-				default: break;
-			};
+				getline(file, line);
+				trim_left(line);
+				const char lineCStr = line.c_str()[0];
+				switch(lineCStr)
+				{
+					case 'f':
+						n = parseVec3(line);
+						break;
+					case 'v':
+						_vertices.push_back(Vertex(parseVec3(line), n));
+						break;
+					default: break;
+				};
+			}
+		} else {
+			throw Vertex::CustomException("File loading failed.");
 		}
 	} else {
-		throw Vertex::CustomException("File loading failed.");
-
+		throw Vertex::CustomException("Wrong file format. Please choose file with *.stl format.");
 	}
 }
 
@@ -125,6 +132,7 @@ void	FileLoader::generateTriangles()
 	int tr = 0;
 	std::vector<Vertex> ver;
 	glm::vec3 xy(0,0,1);
+	glm::normalize(xy);
 	for(unsigned int i = 0; i < _vertices.size(); i++)
 	{
 		Vertex v = _vertices.at(i);
@@ -138,6 +146,8 @@ void	FileLoader::generateTriangles()
 			tr = 0;
 			glm::vec3 n = *v.getNorm();
 			t._angle = acos(glm::dot(n, xy)) * 180 / M_PI;
+			t._angle -= 90.0;
+			t._angle *= -1.0;
 			float a = glm::distance(*t._vertices.at(0).getPos(),*t._vertices.at(1).getPos());
 			float b = glm::distance(*t._vertices.at(1).getPos(),*t._vertices.at(2).getPos());
 			float c = glm::distance(*t._vertices.at(0).getPos(),*t._vertices.at(2).getPos());
@@ -145,5 +155,50 @@ void	FileLoader::generateTriangles()
 			t._area = sqrt(s*(s-a)*(s-b)*(s-c));
 			_triangles.push_back(t);
 		}
+	}
+}
+
+std::string &FileLoader::checkLine(std::string &input) {
+
+	std::string data = "data.addRows";
+	std::stringstream ss;
+
+	if (input.find(data, 0) != std::string::npos) {
+		ss << "data.addRows([";
+
+		for (std::map<float, float>::iterator it = _histoData.begin();
+			 it != _histoData.end(); ++it) {
+			ss << "[" << it->first << "," << it->second << "],";
+		}
+		input = ss.str();
+		input = input.substr(0, input.size() - 1) + "]);";
+	}
+	return (input);
+};
+
+void 	FileLoader::createHisto()
+{
+
+	for (unsigned int i = 0 ; i < _triangles.size(); i++)
+	{
+		_histoData[roundf(_triangles.at(i)._angle)] += _triangles.at(i)._area;
+	}
+	std::ifstream histo_s("./samples/histogram_samples.html");
+	std::ofstream histo("histogram.html");
+	std::string buf_line;
+	if (histo.is_open() && histo_s.is_open())
+	{
+			while (true) {
+				if (!getline(histo_s, buf_line).eof())
+					histo << checkLine(buf_line) << std::endl;
+				else {
+					histo << checkLine(buf_line);
+					break;
+				}
+			}
+			histo.close();
+			histo_s.close();
+	} else {
+		std::cerr << "Error: " << std::strerror(errno) << std::endl;
 	}
 }

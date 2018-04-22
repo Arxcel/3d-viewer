@@ -9,36 +9,33 @@
 #define WIDTH 800
 #define HEIGHT 600
 
-int main() {
+int main(int ac, char *av[]) {
 
-	FileLoader fl;
-	fl.loadAsciiStl("./stls/box_1x1x1.stl");
-	std::cout << "file loaded " << std::endl;
-	std::vector<Vertex> t = fl.getVertices();
-	Display d(WIDTH, HEIGHT, "3D Viewer");
-	Mesh m(t);
-	Shader shader("./shaders/basicShader");
-	Camera cam(glm::vec3(0, 0, -10), 70.0f, static_cast<float>(WIDTH)/static_cast<float>(HEIGHT), 0.01f, 1000.0f);
-	Transform transform;
-	unsigned int counter = 0;
-	fl.generateTriangles();
-	std::vector<Triangle> tr = fl.getTriangles();
-		for (unsigned int i = 0 ; i < tr.size(); i++)
+	try {
+		if (ac != 2)
 		{
-			std::cout << "Triangle " << i << ": " << std::endl << "area: " << tr.at(i)._area << std::endl
-					  << "angle: " << tr.at(i)._angle << std::endl;
-//			std::cout << tr.at(i)._vertices.size() << std::endl;
+			std::cout << "usage: ./3d_viewer [file.stl]" << std::endl;
+			return 0;
 		}
-
-
-	while (d.getIsRunning())
+		FileLoader fl;
+		fl.loadAsciiStl(av[1]);
+		std::vector<Vertex> t = fl.getVertices();
+		Display d(WIDTH, HEIGHT, "3D Viewer");
+		Mesh m(t);
+		Shader shader("./shaders/basicShader");
+		Camera cam(glm::vec3(0, 0, -25.0), 70.0f, static_cast<float>(WIDTH)/static_cast<float>(HEIGHT), 0.01f, 1000.0f);
+		Transform transform;
+		while (d.getIsRunning())
+		{
+			d.clear(0.1f,0.1f,0.2f,1.0f);
+			shader.Bind();
+			shader.update(transform, cam);
+			m.draw();
+			d.update(transform, fl);
+		}
+	} catch (std::exception &e)
 	{
-		d.Clear(0.1f,0.1f,0.2f,1.0f);
-		shader.Bind();
-		shader.update(transform, cam);
-		m.draw();
-		d.Update(transform);
-		counter+=200;
+		std::cout << e.what() << std::endl;
 	}
 	return 0;
 }

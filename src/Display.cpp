@@ -40,7 +40,7 @@ Display::~Display() {
 	SDL_Quit();
 }
 
-void Display::Clear(float r, float g, float b, float a) {
+void Display::clear(float r, float g, float b, float a) {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
@@ -84,7 +84,7 @@ static void			rot_object(int key,  Transform &t)
 		t.getRot().z -= 0.1;
 }
 
-void		Display::key_down(int key, Transform &t)
+void		Display::key_down(int key, Transform &t, FileLoader &fl)
 {
 	if (key == SDLK_ESCAPE)
 		isRunning = false;
@@ -100,10 +100,13 @@ void		Display::key_down(int key, Transform &t)
 	}
 	else if (key == SDLK_z)
 	{
+		fl.generateTriangles();
+		fl.createHisto();
+		system("open histogram.html");
 	}
 }
 
-void Display::Update(Transform &t) {
+void Display::update(Transform &t, FileLoader &fl) {
 	SDL_GL_SwapWindow(_w);
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
@@ -111,5 +114,5 @@ void Display::Update(Transform &t) {
 		if(e.type == SDL_QUIT)
 			isRunning = false;
 		else if (e.type == SDL_KEYDOWN)
-			key_down(e.key.keysym.sym, t);	}
+			key_down(e.key.keysym.sym, t, fl);	}
 }
