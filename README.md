@@ -1,5 +1,6 @@
 # 3d viewer - simple .stl viewer.
-The project is written in c++ with usage of openGl and SDL2 frameworks. The histogram is calculated in c++ and shewed in html form, which is automatically generated.
+The project is written in c++ with usage of openGl and SDL2 frameworks. The histogram is calculated in c++ and showed in html form, which is automatically generated.
+
 *Read this in other languages: [English](README.md), [Русский](README-ru.md).*
 
 #### Table of Contents
