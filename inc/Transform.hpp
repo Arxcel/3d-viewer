@@ -5,8 +5,8 @@
 #ifndef TRANSFORM_HPP
 #define TRANSFORM_HPP
 
-#include "glm.hpp"
-#include "gtx/transform.hpp"
+#include "glm/glm.hpp"
+#include "glm/gtx/transform.hpp"
 
 class Transform
 {

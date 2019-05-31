@@ -2,7 +2,7 @@
 // Created by Arxcel on 4/18/18.
 //
 #include "Display.hpp"
-#include "glew.h"
+#include "GL/glew.h"
 #include <iostream>
 
 Display::Display(int wW, int wH, std::string const &name)
@@ -102,7 +102,6 @@ void		Display::key_down(int key, Transform &t, FileLoader &fl)
 	{
 		fl.generateTriangles();
 		fl.createHisto();
-		system("open histogram.html");
 	}
 }
 

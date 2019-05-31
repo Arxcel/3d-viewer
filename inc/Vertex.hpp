@@ -5,7 +5,7 @@
 #ifndef VERTEX_HPP
 #define VERTEX_HPP
 
-#include "glm.hpp"
+#include "glm/glm.hpp"
 #include <exception>
 #include <string>
 

@@ -4,6 +4,7 @@
 
 
 #include "FileLoader.hpp"
+#include "PathKeeper.hpp"
 
 static inline unsigned int findNextChar(unsigned int start, const char* str, unsigned int length, char token);
 static inline double parseSTLFloat(const std::string& token, unsigned int start, unsigned int end);
@@ -145,7 +146,7 @@ void	FileLoader::generateTriangles()
 			ver.clear();
 			tr = 0;
 			glm::vec3 n = *v.getNorm();
-			t._angle = acos(glm::dot(n, xy)) * 180 / M_PI;
+			t._angle = acos(glm::dot(n, xy)) * 180 / 3.14;
 			t._angle -= 90.0;
 			t._angle *= -1.0;
 			float a = glm::distance(*t._vertices.at(0).getPos(),*t._vertices.at(1).getPos());
@@ -183,7 +184,7 @@ void 	FileLoader::createHisto()
 	{
 		_histoData[roundf(_triangles.at(i)._angle)] += _triangles.at(i)._area;
 	}
-	std::ifstream histo_s("./samples/histogram_samples.html");
+	std::ifstream histo_s(PATHKEEPER.getBinFolder() + "samples/histogram_samples.html");
 	std::ofstream histo("histogram.html");
 	std::string buf_line;
 	if (histo.is_open() && histo_s.is_open())

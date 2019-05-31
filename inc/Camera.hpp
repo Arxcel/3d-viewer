@@ -5,8 +5,8 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
-#include "glm.hpp"
-#include "gtx/transform.hpp"
+#include "glm/glm.hpp"
+#include "glm/gtx/transform.hpp"
 
 class Camera {
 public:

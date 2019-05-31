@@ -5,7 +5,7 @@
 #ifndef MESH_HPP
 #define MESH_HPP
 #include "Vertex.hpp"
-#include "glew.h"
+#include "GL/glew.h"
 #include <string>
 #include <vector>
 class Vertex;

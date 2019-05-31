@@ -6,7 +6,7 @@
 #define SHADER_HPP
 
 #include <string>
-#include "glew.h"
+#include "GL/glew.h"
 #include "Transform.hpp"
 #include "Camera.hpp"
 
