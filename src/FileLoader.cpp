@@ -5,6 +5,7 @@
 
 #include "FileLoader.hpp"
 #include "PathKeeper.hpp"
+#include <cstring>
 
 static inline unsigned int findNextChar(unsigned int start, const char* str, unsigned int length, char token);
 static inline double parseSTLFloat(const std::string& token, unsigned int start, unsigned int end);

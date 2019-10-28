@@ -1,6 +1,6 @@
 .*
-CMake*
-cmake*
+cmake-build*
 obj
 3d_viewer
 *.a
+build/
