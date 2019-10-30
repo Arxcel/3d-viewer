@@ -22,7 +22,7 @@ cd ~/3dviewer
 mkdir build
 cd build
 cmake ..
-make
+cmake --build .
 ```
 
 ## Manual
